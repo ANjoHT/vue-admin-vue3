@@ -1,5 +1,6 @@
 // 引入路由
 import { createRouter, createWebHistory } from "vue-router";
+import layout from "@/layout/index.vue";
 // 路由数据
 let routes = [
   // 默认路由:进入项目 默认进入 /index 页面
@@ -9,9 +10,20 @@ let routes = [
   },
   {
     path: "/index",
-    name: "index",
-    // 使用import可以路由懒加载，如果不使用，太多组件一起加载会造成白屏
-    component: () => import("@/view/index.vue"),
+    component: layout,
+    children: [
+      {
+        path: "/index",
+        name: "index",
+        component: () => import("@/view/index.vue"),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    name: "login",
+    hidden: true,
+    component: () => import("@/view/login.vue"),
   },
 ];
 // 路由

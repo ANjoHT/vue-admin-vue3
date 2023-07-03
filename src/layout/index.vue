@@ -27,18 +27,18 @@ import Menu from "./components/menu.vue";
 import Header from "./components/header.vue";
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .el-container {
   height: 100vh;
 }
 .el-header {
-  background-color: #b3c0d1;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 }
 .el-aside {
-  width: 200px;
-  background-color: #f6f6f6;
+  width: auto;
+  background-color: rgb(48, 65, 86);
 }
 .el-main {
-  background-color: #e9eef3;
+  // background-color: #e9eef3;
 }
 </style>

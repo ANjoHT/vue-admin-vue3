@@ -1,25 +1,32 @@
 // 引入路由
 import { createRouter, createWebHistory } from "vue-router";
 import layout from "@/layout/index.vue";
+import { routerData } from "@/utils/router.ts";
 // 路由数据
 let routes = [
-  // 默认路由:进入项目 默认进入 /index 页面
+  /**
+   * redirect 默认路由:进入项目 默认进入 /index 页面
+   * hidden 是否在路由栏显示
+   * meta : {
+      noCache: true                   // 如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
+      title: 'title'                  // 设置该路由在侧边栏和面包屑中展示的名字
+      icon: 'svg-name'                // 设置该路由的图标，对应路径src/assets/icons/svg
+      breadcrumb: false               // 如果设置为false，则不会在breadcrumb面包屑中显示
+      activeMenu: '/system/user'      // 当路由设置了该属性，则会高亮相对应的侧边栏。
+    }
+   */
   {
     path: "/",
-    redirect: "/index",
+    redirect: "/login",
   },
   {
     path: "/index",
+    id: "1",
     component: layout,
-    children: [
-      {
-        path: "/index",
-        name: "index",
-        component: () => import("@/view/index.vue"),
-      },
-    ],
+    children: [...routerData],
   },
   {
+    id: "2",
     path: "/login",
     name: "login",
     hidden: true,

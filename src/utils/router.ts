@@ -7,7 +7,7 @@ export const routerData = [
     meta: {
       title: "首页",
     },
-    component: () => import("@/view/index.vue"),
+    url: "/index",
   },
   {
     path: "/user",
@@ -26,7 +26,7 @@ export const routerData = [
         meta: {
           title: "个人中心",
         },
-        component: () => import("@/view/user/info/index.vue"),
+        url: "user/info",
       },
       {
         path: "/userSet",
@@ -36,7 +36,7 @@ export const routerData = [
         meta: {
           title: "设置",
         },
-        component: () => import("@/view/user/set/index.vue"),
+        url: "user/set",
       },
     ],
   },
@@ -57,7 +57,7 @@ export const routerData = [
         meta: {
           title: "系统信息",
         },
-        component: () => import("@/view/admin/info/index.vue"),
+        url: "admin/info",
       },
       {
         path: "/adminSet",
@@ -67,7 +67,7 @@ export const routerData = [
         meta: {
           title: "系统设置",
         },
-        component: () => import("@/view/admin/set/index.vue"),
+        url: "admin/set",
       },
     ],
   },

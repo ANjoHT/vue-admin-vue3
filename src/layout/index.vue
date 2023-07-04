@@ -39,6 +39,5 @@ import Header from "./components/header.vue";
   background-color: rgb(48, 65, 86);
 }
 .el-main {
-  // background-color: #e9eef3;
 }
 </style>

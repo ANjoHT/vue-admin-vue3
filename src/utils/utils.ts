@@ -139,18 +139,22 @@ const _decrypt = (word: any, keyStr: any) => {
 
 /**
  * 获取Component的方法
- * @param path 路径
+ * @param view 路径
+ * @param type 路由层数 目前只兼容二级路由
  */
 const _getViews = (view: any, type: any) => {
   let res;
   let modules: any;
   if (type == "one") {
-    modules = import.meta.glob("../view/*/*.vue");
+    modules = import.meta.glob("../view/*.vue");
   } else {
     modules = import.meta.glob("../view/**/index.vue");
   }
   for (const path in modules) {
-    const dir = path.split("view")[1].split(".vue")[0];
+    const dir =
+      type == "one"
+        ? path.split("view")[1].split(".vue")[0]
+        : path.split("view/")[1].split("/index.vue")[0];
     if (dir === view) {
       res = () => modules[path]();
     }

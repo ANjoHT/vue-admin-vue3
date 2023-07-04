@@ -37,13 +37,16 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useStore } from "@/store/index.ts";
 import { useRouter } from "vue-router";
 import { routerData } from "@/utils/router.ts";
 
 const router = useRouter();
+const store = useStore();
 const isCollapse = ref(false);
 const routerList = [...routerData];
-
+// 获取到理由数据
+store.addRouter(routerData);
 // 菜单栏点击
 let onClick = (url: string) => {
   router.push(url);

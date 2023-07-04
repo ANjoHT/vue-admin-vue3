@@ -9,9 +9,13 @@ import "element-plus/dist/index.css";
 import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 // 注册 所有的 el 图标
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
-
+// 引入pinia
+import pinia from "@/store/store.ts";
+// pinia持久化插件
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
-app.use(ElementPlus, { locale: zhCn }).use(router).mount("#app");
+pinia.use(piniaPluginPersistedstate);
+app.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).mount("#app");

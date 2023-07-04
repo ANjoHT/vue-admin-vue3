@@ -2,6 +2,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import layout from "@/layout/index.vue";
 import { routerData } from "@/utils/router.ts";
+import pinia from "@/store/store";
+import { useStore } from "@/store/index.ts";
+
+const store = useStore(pinia);
+store.addRouter(routerData);
 // 路由数据
 let routes = [
   /**
@@ -23,7 +28,7 @@ let routes = [
     path: "/index",
     id: "1",
     component: layout,
-    children: [...routerData],
+    children: [...store.route],
   },
   {
     id: "2",
@@ -38,5 +43,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
 // 导出
 export default router;

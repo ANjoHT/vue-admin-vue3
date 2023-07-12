@@ -5,6 +5,9 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"] // 这里要和Vite的别名对应
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",

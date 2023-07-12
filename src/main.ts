@@ -13,6 +13,9 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import pinia from "@/store/store.ts";
 // pinia持久化插件
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+// 引入svg
+import "virtual:svg-icons-register";
+
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);

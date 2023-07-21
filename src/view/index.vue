@@ -1,7 +1,11 @@
 <template>
-  <div>index页面</div>
+  <div>
+    <swiper></swiper>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import swiper from "@/components/swiper.vue";
+</script>
 
 <style scoped></style>

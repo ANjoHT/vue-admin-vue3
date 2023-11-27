@@ -3,7 +3,6 @@
     <el-form ref="formRef" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">后台管理系统</h3>
       <div class="loginType">
-        <div class="cursor-pointer" @click="switchLogin">{{ isPassword ? "验证码登录" : "密码登录" }}</div>
       </div>
       <el-form-item prop="username">
         <el-input
@@ -33,7 +32,6 @@
         </div>
       </div>
       <!-- 验证码登录 -->
-
       <el-form-item style="width: 100%">
         <el-button
           :loading="loading"
@@ -171,11 +169,7 @@ let onFail = () => {};
 let handleLogin = () => {
   loading.value = true;
   let rules: any = [];
-  if (isPassword.value) {
-    rules = ["phone", "password"];
-  } else {
-    rules = ["phone", "msmCode"];
-  }
+ 
   formRef.value.validateField(rules, (valid: any) => {
     if (valid) {
       if (isPassword.value) {

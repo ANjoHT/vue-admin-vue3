@@ -21,4 +21,4 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
 pinia.use(piniaPluginPersistedstate);
-app.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).mount("#app");
+app.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).use(ElementPlus).mount("#app");

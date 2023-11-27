@@ -20,8 +20,15 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 3000, // 端口号
-    open: false, // 是否自动打开浏览器
+    port: 8080, // 端口号
+    open: true, // 是否自动打开浏览器
+    proxy:{
+      '/api':{
+        target:'http://localhost:8888',
+        changeOrigin:true,
+        rewrite:(path) => path.replace(/^\/api/,'')
+      }
+    }
   },
   base: "./",
   build: {

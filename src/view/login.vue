@@ -1,27 +1,19 @@
 <template>
   <div class="loginWrap flex align-items-center">
-    <el-form
-      ref="formRef"
-      :model="loginForm"
-      :rules="loginRules"
-      class="login-form"
-    >
+    <el-form ref="formRef" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">后台管理系统</h3>
       <div class="loginType">
-        <div class="cursor-pointer" @click="switchLogin">
-          {{ isPassword ? "验证码登录" : "密码登录" }}
-        </div>
+        <div class="cursor-pointer" @click="switchLogin">{{ isPassword ? "验证码登录" : "密码登录" }}</div>
       </div>
-      <el-form-item prop="phone">
+      <el-form-item prop="username">
         <el-input
-          v-model="loginForm.phone"
+          v-model="loginForm.username"
           type="text"
           auto-complete="off"
           placeholder="手机号"
           :prefix-icon="Iphone"
           maxlength="11"
-        >
-        </el-input>
+        ></el-input>
       </el-form-item>
       <!-- 密码登录 -->
       <div v-if="isPassword">
@@ -34,33 +26,14 @@
             :prefix-icon="Lock"
             maxlength="16"
             show-password
-          >
-          </el-input>
+          ></el-input>
         </el-form-item>
         <div class="flex space-between">
           <el-checkbox v-model="loginForm.rememberMe">记住密码</el-checkbox>
         </div>
       </div>
       <!-- 验证码登录 -->
-      <div v-else>
-        <el-form-item prop="msmCode">
-          <el-input
-            v-model="loginForm.msmCode"
-            type="text"
-            auto-complete="off"
-            placeholder="验证码"
-            style="width: 65%"
-          >
-          </el-input>
-          <el-button
-            type="primary"
-            size="large"
-            :disabled="msmBtnText == '获取验证码' ? false : true"
-            @click="isShow = true"
-            >{{ msmBtnText }}</el-button
-          >
-        </el-form-item>
-      </div>
+
       <el-form-item style="width: 100%">
         <el-button
           :loading="loading"
@@ -75,20 +48,15 @@
       </el-form-item>
     </el-form>
     <!-- 如果需要自定义，加上imgs=[] -->
-    <Vcode
-      :show="isShow"
-      @success="onSuccess"
-      @close="onClose"
-      @fail="onFail"
-    ></Vcode>
+    <Vcode :show="isShow" @success="onSuccess" @close="onClose" @fail="onFail"></Vcode>
   </div>
 </template>
 
 <script setup lang="ts">
+import { login } from "@/api/apis";
 import { ref, reactive, onMounted } from "vue";
 import { Iphone, Lock } from "@element-plus/icons-vue";
 import { useRouter } from "vue-router";
-import checkFun from "@/utils/check.ts";
 import utils from "@/utils/utils.ts";
 import Vcode from "vue3-puzzle-vcode";
 
@@ -107,39 +75,27 @@ onMounted(() => {
 
 // 登录数据
 let loginForm = reactive({
-  phone: "18179324567",
-  password: "admin123",
+  username: "admin",
+  password: "123456",
   rememberMe: true,
-  msmCode: "",
+  msmCode: ""
 });
 
 const validatePhone = (rule: any, value: any, callback: any) => {
-  if (!checkFun._checkPhone(value)) {
-    callback(new Error("手机号码输入有误，请重新输入！"));
-  } else {
-    callback();
-  }
+  callback();
 };
 
 const validatePass = (rule: any, value: any, callback: any) => {
-  if (!checkFun._checkPassword(value)) {
-    callback(new Error("密码格式英文+数字，最小8位，最大16位。"));
-  } else {
-    callback();
-  }
+  callback();
 };
 
 // 登录表单校验
 let loginRules = reactive({
-  phone: [
-    { required: true, trigger: "blur", message: "请输入您的账号" },
-    { validator: validatePhone, trigger: "blur" },
-  ],
+  phone: [{ required: true, trigger: "blur", message: "请输入用户名" }],
   password: [
-    { required: true, trigger: "blur", mim: 6, message: "请输入您的密码" },
-    { validator: validatePass, trigger: "blur" },
+    { required: true, trigger: "blur", mim: 6, message: "请输入您的密码" }
   ],
-  msmCode: [{ required: true, trigger: "blur", message: "请输入短信验证码" }],
+  msmCode: [{ required: true, trigger: "blur", message: "请输入短信验证码" }]
 });
 
 // 是否正在登录
@@ -183,10 +139,20 @@ let onSuccess = () => {
   isShow.value = false;
   loading.value = false;
   if (isPassword.value) {
-    utils._message("登录成功", "success");
-    setTimeout(() => {
-      router.push("/index");
-    }, 1000);
+    login({ username: loginForm.username, password: loginForm.password }).then(
+      (res: any) => {
+        if (res.code == 200) {
+          utils._message("登录成功", "success");
+          setTimeout(() => {
+            router.push("/index");
+          }, 1000);
+          console.log(res);
+          localStorage.setItem('token',res.records.token)
+        } else {
+          utils._message("用户名或密码错误","error")
+        }
+      }
+    );
   } else {
     getMsmCode();
   }
@@ -218,7 +184,7 @@ let handleLogin = () => {
         // 手机验证码登录
         let param = {
           phone: loginForm.phone,
-          validCode: loginForm.msmCode,
+          validCode: loginForm.msmCode
         };
         console.log(param);
         utils._message("登录成功", "success");

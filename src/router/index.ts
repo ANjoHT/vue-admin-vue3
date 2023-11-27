@@ -43,6 +43,18 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next();
+  } else {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
 
 // 导出
 export default router;

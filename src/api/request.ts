@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
+import router from '@/router';
 export const request = (options:any) => {
     return new Promise((resolve,reject) => {
         const service = axios.create({
@@ -9,10 +10,10 @@ export const request = (options:any) => {
         service.interceptors.request.use(
             (config:any) => {
                 const token = () => {
-                    if (sessionStorage.getItem("token")) {
-                      return sessionStorage.getItem("token");
+                    if (localStorage.getItem("token")) {
+                      return localStorage.getItem("token");
                     } else {
-                      return sessionStorage.getItem("token");
+                      router.replace('/login')
                     }
                   };
                 if(token) {

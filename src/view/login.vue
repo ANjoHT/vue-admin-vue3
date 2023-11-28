@@ -148,6 +148,7 @@ let onSuccess = () => {
           localStorage.setItem('token',res.records.token)
         } else {
           utils._message("用户名或密码错误","error")
+          localStorage.clear()
         }
       }
     );

@@ -71,4 +71,26 @@ export const routerData = [
       },
     ],
   },
+  {
+    path: "/sku",
+    name: "sku",
+    id: "3-2",
+    meta: {
+      title: "sku管理",
+    },
+    icon: "ShoppingTrolley",
+    children: [
+      {
+        path: "/skuList",
+        name: "skuList",
+        icon: "goods",
+        id: "3-2-1",
+        meta: {
+          title: "sku列表",
+        },
+        url: "sku/skuList",
+      },
+    ],
+  }
+ 
 ];

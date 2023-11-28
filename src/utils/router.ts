@@ -91,6 +91,27 @@ export const routerData = [
         url: "sku/skuList",
       },
     ],
+  },
+  {
+    path: "/pet",
+    name: "pet",
+    id: "4-2",
+    meta: {
+      title: "萌宠管理",
+    },
+    icon: "Box",
+    children: [
+      {
+        path: "/skuList",
+        name: "skuList",
+        icon: "Box",
+        id: "4-2-1",
+        meta: {
+          title: "萌宠列表",
+        },
+        url: "pet/petList",
+      },
+    ],
   }
- 
+
 ];

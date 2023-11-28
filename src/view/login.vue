@@ -88,13 +88,6 @@ const validatePass = (rule: any, value: any, callback: any) => {
 };
 
 // 登录表单校验
-let loginRules = reactive({
-  phone: [{ required: true, trigger: "blur", message: "请输入用户名" }],
-  password: [
-    { required: true, trigger: "blur", mim: 6, message: "请输入您的密码" }
-  ],
-  msmCode: [{ required: true, trigger: "blur", message: "请输入短信验证码" }]
-});
 
 // 是否正在登录
 let loading = ref(false);

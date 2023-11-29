@@ -10,15 +10,12 @@ export const request = (options: any) => {
         service.interceptors.request.use(
             (config: any) => {
                 const token = () => {
-                    if (localStorage.getItem("token")) {
-                        return localStorage.getItem("token");
-                    } else {
-                        router.replace('/login')
-                    }
+
+                    return localStorage.getItem("token");
                 };
                 if (token) {
                     config.headers["Content-Type"] = "application/json;charset=UTF-8";
-                    config.headers['X-Token'] = token()
+                    config.headers['token'] = token()
                     config.headers.Authorization = token()
                 }
                 return config
@@ -36,20 +33,11 @@ export const request = (options: any) => {
                         router.replace('/login')
                     } else {
                         return response.data;
-
                     }
-                 
-                    
                 },
                 error => {
                     console.log(error, 'error');
-                    if (error.response.status == 403) {
-                        ElMessage.error('token已失效')
-                        localStorage.clear()
-                        router.replace('/login')
-                    } else {
-                        ElMessage.error('服务器请求错误,请稍后再试')
-                    }
+                    ElMessage.error('服务器请求错误,请稍后再试')
                     return Promise.reject(error)
                 }
             )

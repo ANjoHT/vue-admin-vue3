@@ -38,6 +38,16 @@ export const routerData = [
         },
         url: "user/set",
       },
+      {
+        path: "/userList",
+        name: "userList",
+        icon: "User",
+        id: "1-2-2",
+        meta: {
+          title: "用户列表",
+        },
+        url: "user/list",
+      },
     ],
   },
   {
@@ -102,8 +112,8 @@ export const routerData = [
     icon: "Box",
     children: [
       {
-        path: "/skuList",
-        name: "skuList",
+        path: "/petList",
+        name: "petList",
         icon: "Box",
         id: "4-2-1",
         meta: {

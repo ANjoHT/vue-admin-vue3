@@ -1,7 +1,7 @@
 <template>
   <div class="loginWrap flex align-items-center">
     <el-form ref="formRef" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">后台管理系统</h3>
+      <h3 class="title">冷链仓储管理系统</h3>
       <div class="loginType">
       </div>
       <el-form-item prop="username">
@@ -44,6 +44,9 @@
           <span v-else>登 录 中...</span>
         </el-button>
       </el-form-item>
+      <div class="register">
+        <span>没有账号，去注册</span>
+      </div>
     </el-form>
     <!-- 如果需要自定义，加上imgs=[] -->
     <Vcode :show="isShow" @success="onSuccess" @close="onClose" @fail="onFail"></Vcode>
@@ -199,8 +202,9 @@ let handleLogin = () => {
   width: 100%;
   height: 100vh;
   justify-content: center;
-  background: url("@/assets/img/login-background.jpg") no-repeat;
-  background-size: cover;
+  background-color: #555;
+  // background: url("@/assets/img/login-background.jpg") no-repeat;
+  // background-size: cover;
   .login-form {
     border-radius: 6px;
     background: #ffffff;
@@ -235,5 +239,21 @@ let handleLogin = () => {
       color: #707070;
     }
   }
+}
+.register {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #409eff;
+  span {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
 }
 </style>

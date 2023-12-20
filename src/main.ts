@@ -15,10 +15,17 @@ import pinia from "@/store/store.ts";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 // 引入svg
 import "virtual:svg-icons-register";
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
 
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
+
+function useTable (app: any) {
+  app.use(VXETable)
+}
+
 pinia.use(piniaPluginPersistedstate);
-app.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).use(ElementPlus).mount("#app");
+app.use(router).use(pinia).use(ElementPlus, { locale: zhCn }).use(ElementPlus).use(useTable).mount("#app");

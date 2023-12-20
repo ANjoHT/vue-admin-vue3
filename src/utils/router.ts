@@ -19,14 +19,14 @@ export const routerData = [
     },
     children: [
       {
-        path: "/userInfo",
-        name: "userInfo",
+        path: "/userList",
+        name: "userList",
         icon: "Avatar",
         id: "1-2-1",
         meta: {
-          title: "个人中心",
+          title: "用户列表",
         },
-        url: "user/info",
+        url: "user/list",
       },
       {
         path: "/userSet",
@@ -76,7 +76,7 @@ export const routerData = [
     name: "sku",
     id: "3-2",
     meta: {
-      title: "sku管理",
+      title: "仓库管理",
     },
     icon: "ShoppingTrolley",
     children: [
@@ -86,9 +86,19 @@ export const routerData = [
         icon: "goods",
         id: "3-2-1",
         meta: {
-          title: "sku列表",
+          title: "货物管理",
         },
         url: "sku/skuList",
+      },
+      {
+        path: "/manage",
+        name: "manage",
+        icon: "goods",
+        id: "3-2-2",
+        meta: {
+          title: "库存管理",
+        },
+        url: "sku/manage",
       },
     ],
   }

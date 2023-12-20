@@ -38,6 +38,4 @@ import Header from "./components/header.vue";
   width: auto;
   background-color: rgb(48, 65, 86);
 }
-.el-main {
-}
 </style>

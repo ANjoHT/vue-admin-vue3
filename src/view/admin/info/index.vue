@@ -1,7 +1,20 @@
 <template>
-  <div>个人中心页面</div>
+  <div>
+    
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script lang="ts">
+  import { defineComponent } from "vue"
+  export default defineComponent({
+    name:'',
+  })
+</script>
 
-<style scoped></style>
+<script lang="ts" setup>
+
+</script>
+
+<style scoped>
+
+</style>
